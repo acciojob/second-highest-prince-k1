@@ -10,29 +10,21 @@
 	<script>
 		function secondHighest(arr) {
 			//Write your code here
-			if(arr.length == 0 || arr.length == 1){
+			if(arr.length == 1 || arr.length == 0){
 				return '-Infinity';
 			}
-			let maxNum = Math.max(...arr);
-
-			let secMax = arr[0];
-			if(secMax == maxNum){
-			  secMax = arr[1];
+			arr.sort((a,b) => a-b);
+			let result = 0;
+			for(let i = 0; i < arr.length; i ++){
+				if(arr[0] == arr[i]){
+					result = result+1;
 				}
-			let count = 0;
-			for(let i = 0; i < arr.length; i++){
-					if(arr[i] == maxNum){
-						result++;
-					}
-					if(maxNum > arr[i] && arr[i] > secMax){
-					    secMax = arr[i];
-						  }
-					}
-			if(count == arr.length){
-				return '-Infinity';
 			}
-		return secMax;
-
+			if(result == arr.length) return '-Infinity';
+			if(arr[arr.length-1] == arr[arr.length-2]){
+				return arr[arr.length-3];
+			}
+		return arr[arr.length-2];
 			
 		}
 
